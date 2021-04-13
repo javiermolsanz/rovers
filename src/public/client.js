@@ -8,12 +8,6 @@ const mainDiv = document.getElementById("main");
 // add our markup to the page
 const root = document.getElementById("root");
 
-mainDiv.addEventListener("click", () => {
-  mainDiv.style.display = "none";
-  root.style.display = "block";
-  //root.innerHTML = App();
-});
-
 const updateStore = (store, newState) => {
   store = Object.assign(store, newState);
   render(root, store);
@@ -65,6 +59,8 @@ const App = data => {
 };
 
 const createUI = async rover => {
+  mainDiv.style.display = "none";
+  root.style.display = "block";
   const data = await roverData(rover);
   //const data = "foo";
   root.innerHTML = App(data);
@@ -72,7 +68,6 @@ const createUI = async rover => {
 
 const chooseAgain = () => {
   mainDiv.style.display = "flex";
-  mainDiv.setAttribute("class", "main");
   root.innerHTML = ``;
   root.style.display = "none";
 };
