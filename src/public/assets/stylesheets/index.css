@@ -22,8 +22,13 @@ h1 {
   cursor: pointer;
 }
 
-header {
-  /* header styles */
+h3 {
+  color: white;
+  padding: 3px;
+  font-family: emoji;
+  font-size: 3rem;
+  align-items: center;
+  margin: auto;
 }
 .photocontainer {
   display: flex;
@@ -64,7 +69,7 @@ header {
 }
 
 .card:hover {
-  background-color: yellow;
+  background-color: white;
 }
 
 #main {

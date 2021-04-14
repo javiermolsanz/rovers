@@ -1,14 +1,19 @@
-let store = {
-  user: { name: "Student" },
-  apod: "",
-  rovers: ["Curiosity", "Opportunity", "Spirit"]
-};
 const mainDiv = document.getElementById("main");
 const root = document.getElementById("root");
 
 const updateStore = (store, newState) => {
   store = Object.assign(store, newState);
   render(root, store);
+};
+
+window.onload = () => {
+  let store = {
+    user: Immutable.Map({ name: "Javier" }),
+    apod: "",
+    rovers: Immutable.List(["Curiosity", "Opportunity", "Spirit"])
+    //rovers: ["Curiosity", "Opportunity", "Spirit"]
+  };
+  mainDiv.innerHTML = renderOptions(store.rovers);
 };
 
 const renderOptions = rovers => {
@@ -21,17 +26,12 @@ const renderOptions = rovers => {
   return menu;
 };
 
-window.onload = event => {
-  mainDiv.innerHTML = renderOptions(store.rovers);
-};
-
 const App = data => {
   console.log(data);
 
   return `<header></header>
     <main>
       <section>
-          <h3>Put things on the page!</h3>
           <div>
           ${displayRoverData(data.photos[0])}
           </div>
@@ -62,18 +62,6 @@ const chooseAgain = () => {
   root.style.display = "none";
 };
 
-const roverData = async rover => {
-  const url = "/roverData";
-  const data = { rover: rover };
-  const response = await fetch(url, {
-    headers: {
-      "Content-Type": "application/json"
-    },
-    method: "post",
-    body: JSON.stringify(data)
-  });
-  return response.json();
-};
 //roverData("Curiosity").then(d => displayRover(d.photos));
 
 const displayRoverData = roverData => {
@@ -100,4 +88,16 @@ const displayRoverPictures = roverData => {
 
 // ------------------------------------------------------  API CALLS
 
-// Example API call
+// API call to server to get data from rovers
+const roverData = async rover => {
+  const url = "/roverData";
+  const data = { rover: rover };
+  const response = await fetch(url, {
+    headers: {
+      "Content-Type": "application/json"
+    },
+    method: "post",
+    body: JSON.stringify(data)
+  });
+  return response.json();
+};
