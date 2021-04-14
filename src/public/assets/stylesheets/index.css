@@ -75,6 +75,10 @@ h1 {
 .card:hover {
   background-color: white;
 }
+#initialmessage {
+  margin: auto;
+  text-align: center;
+}
 
 #main {
   display: flex;

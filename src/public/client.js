@@ -1,5 +1,6 @@
 const mainDiv = document.getElementById("main");
 const root = document.getElementById("root");
+const initialmessage = document.getElementById("initialmessage");
 
 // const updateStore = (store, newState) => {
 //   store = Object.assign(store, newState);
@@ -57,6 +58,7 @@ const App = data => {
 };
 
 const createUI = async rover => {
+  initialmessage.style.display = "none";
   mainDiv.style.display = "none";
   root.style.display = "block";
   const data = await roverData(rover);
