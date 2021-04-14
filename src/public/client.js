@@ -4,8 +4,6 @@ let store = {
   rovers: ["Curiosity", "Opportunity", "Spirit"]
 };
 const mainDiv = document.getElementById("main");
-
-// add our markup to the page
 const root = document.getElementById("root");
 
 const updateStore = (store, newState) => {
@@ -14,45 +12,18 @@ const updateStore = (store, newState) => {
 };
 
 const renderOptions = rovers => {
-  return `
-  <button class="card" onclick="createUI('Curiosity')">
-    Curiosity
-  </button>
-  <button class="card" onclick="createUI('Opportunity')">
-    Opportunity
-  </button>
-  <button class="card" onclick="createUI('Spirit')">Spirit</button>
-  `;
+  let menu = "";
+  rovers.map(rover => {
+    menu += `<button class="card" onclick="createUI('${rover}')">
+    ${rover}
+  </button>`;
+  });
+  return menu;
 };
 
 window.onload = event => {
-  console.log("hey");
   mainDiv.innerHTML = renderOptions(store.rovers);
 };
-
-// const render = async (root, state) => {
-//   root.innerHTML = App(state);
-// };
-
-// create content
-// const App = state => {
-//   let { rovers, apod } = state;
-
-//   return `
-//         <header></header>
-//         <main>
-//             ${Greeting(store.user.name)}
-//             <section>
-//                 <h3>Put things on the page!</h3>
-//                 <p>Here is an example section.</p>
-//                 <p>
-//                 </p>
-//                 ${ImageOfTheDay(apod)}
-//             </section>
-//         </main>
-//         <footer></footer>
-//     `;
-// };
 
 const App = data => {
   console.log(data);
