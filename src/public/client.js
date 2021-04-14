@@ -33,7 +33,7 @@ const App = data => {
     </header>
     <main>
       <section>
-          <div>
+          <div class="infocontainer">
           ${displayRoverData(data.photos[0])}
           </div>
           <button class ="back" onclick="chooseAgain()">
