@@ -15,7 +15,6 @@ const updateStore = (store, newState) => {
 
 const renderOptions = rovers => {
   return `
-  <div id="main">
   <button class="card" onclick="createUI('Curiosity')">
     Curiosity
   </button>
@@ -23,8 +22,12 @@ const renderOptions = rovers => {
     Opportunity
   </button>
   <button class="card" onclick="createUI('Spirit')">Spirit</button>
-</div>
   `;
+};
+
+window.onload = event => {
+  console.log("hey");
+  mainDiv.innerHTML = renderOptions(store.rovers);
 };
 
 // const render = async (root, state) => {
