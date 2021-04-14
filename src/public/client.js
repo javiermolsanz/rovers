@@ -13,6 +13,20 @@ const updateStore = (store, newState) => {
   render(root, store);
 };
 
+const renderOptions = rovers => {
+  return `
+  <div id="main">
+  <button class="card" onclick="createUI('Curiosity')">
+    Curiosity
+  </button>
+  <button class="card" onclick="createUI('Opportunity')">
+    Opportunity
+  </button>
+  <button class="card" onclick="createUI('Spirit')">Spirit</button>
+</div>
+  `;
+};
+
 // const render = async (root, state) => {
 //   root.innerHTML = App(state);
 // };
@@ -45,11 +59,13 @@ const App = data => {
       <section>
           <h3>Put things on the page!</h3>
           <div>
-          <button onclick="chooseAgain()">
+          ${displayRoverData(data.photos[0])}
+          </div>
+          <button class ="back" onclick="chooseAgain()">
           Go back
         </button>
-          ${displayRoverData(data.photos[0])}
-          ${displayRoverPictures(data.photos)}
+          <div class = "photocontainer">${displayRoverPictures(data.photos)} 
+          
           </div>
           
       </section>
@@ -98,7 +114,7 @@ const displayRoverData = roverData => {
 const displayRoverPictures = roverData => {
   let images = ``;
   roverData.map(rover => {
-    images += `<img src="${rover.img_src}" height="350px" width="50%" />`;
+    images += `<img src="${rover.img_src}" class="image"/>`;
   });
   return images;
 };

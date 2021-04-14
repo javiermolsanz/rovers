@@ -5,19 +5,62 @@ body {
   flex-direction: column;
   font-family: Arial;
   min-height: 100vh;
+  background: url(https://wallpaperaccess.com/full/1745055.jpg);
+}
+h1 {
+  color: white;
+}
+.back {
+  display: block;
+  background-color: white;
+  color: black;
+  padding: 5px 50px;
+  margin: 40px auto;
+  border-radius: 30px;
+  font-size: 1.5rem;
+  box-shadow: 0 0 30px whitesmoke;
+  cursor: pointer;
 }
 
 header {
   /* header styles */
 }
+.photocontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image {
+  width: 80%;
+  margin: 20px;
+  border: 1px solid white;
+  /* use mobile */
+}
+/* .image {
+  width: 80%;
+  margin: 30px auto;
+  border: 8px black;
+} */
 .card {
-  width: 300px;
-  height: 600px;
-  padding: 20px;
+  width: 30%;
+  align-items: center;
+  height: 400px;
+  justify-content: center;
   border: 1px solid #c9c9c9;
-  background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/OSIRIS_Mars_true_color.jpg/1920px-OSIRIS_Mars_true_color.jpg);
+  background: url(https://i.pinimg.com/originals/28/c2/4b/28c24bab0e3f0fd34e719bca22c629e8.jpg);
   background-repeat: no-repeat;
-  background-size: 100px;
+  background-size: 100;
+  display: block;
+  background-color: white;
+  color: black;
+  padding: 5px 50px;
+  margin: 40px auto;
+  border-radius: 30px;
+  font-size: 1.5rem;
+
+  box-shadow: 0 0 30px whitesmoke;
+  cursor: pointer;
 }
 
 .card:hover {
@@ -26,7 +69,7 @@ header {
 
 #main {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
 }
 
@@ -41,17 +84,42 @@ footer {
 
 /* -------------------  TABLET  --------------------- */
 @media (min-width: 768px) {
-  /* use mobile */
+  .photocontainer {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  .image {
+    width: 40%;
+    margin: 20px;
+    /* use mobile */
+  }
 }
 
 /* -------------------  DESKTOP  -------------------- */
 
 @media (min-width: 1224px) {
+  .photocontainer {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
   /* use mobile */
+  .image {
+    width: 20%;
+    margin: 20px;
+    /* use mobile */
+  }
 }
 
 /* -------------------  LARGE SCREENS  -------------- */
 
 @media (min-width: 1824px) {
+  .photocontainer {
+    flex-wrap: wrap;
+  }
   /* use mobile */
+  .image {
+    width: 20%;
+    margin: 20px;
+    /* use mobile */
+  }
 }
