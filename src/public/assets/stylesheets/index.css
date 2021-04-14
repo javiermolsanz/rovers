@@ -7,6 +7,9 @@ body {
   min-height: 100vh;
   background: url(https://wallpaperaccess.com/full/1745055.jpg);
 }
+header {
+  text-align: center;
+}
 h1 {
   color: white;
 }
@@ -21,8 +24,7 @@ h1 {
   box-shadow: 0 0 30px whitesmoke;
   cursor: pointer;
 }
-
-h3 {
+.head {
   color: white;
   padding: 3px;
   font-family: emoji;
@@ -30,6 +32,7 @@ h3 {
   align-items: center;
   margin: auto;
 }
+
 .photocontainer {
   display: flex;
   flex-direction: column;
@@ -40,6 +43,7 @@ h3 {
   width: 80%;
   margin: 20px;
   border: 1px solid white;
+  border-radius: 3px;
   /* use mobile */
 }
 /* .image {
@@ -48,7 +52,7 @@ h3 {
   border: 8px black;
 } */
 .card {
-  width: 30%;
+  width: 60%;
   align-items: center;
   height: 400px;
   justify-content: center;
@@ -74,7 +78,7 @@ h3 {
 
 #main {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 10px;
 }
 
@@ -98,6 +102,14 @@ footer {
     margin: 20px;
     /* use mobile */
   }
+  #main {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+  .card {
+    width: 50%;
+  }
 }
 
 /* -------------------  DESKTOP  -------------------- */
@@ -113,6 +125,14 @@ footer {
     margin: 20px;
     /* use mobile */
   }
+  #main {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+  .card {
+    width: 50%;
+  }
 }
 
 /* -------------------  LARGE SCREENS  -------------- */
@@ -126,5 +146,13 @@ footer {
     width: 20%;
     margin: 20px;
     /* use mobile */
+  }
+  #main {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .card {
+    width: 50%;
   }
 }

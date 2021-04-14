@@ -1,17 +1,16 @@
 const mainDiv = document.getElementById("main");
 const root = document.getElementById("root");
 
-const updateStore = (store, newState) => {
-  store = Object.assign(store, newState);
-  render(root, store);
-};
+// const updateStore = (store, newState) => {
+//   store = Object.assign(store, newState);
+//   render(root, store);
+// };
 
 window.onload = () => {
   let store = {
     user: Immutable.Map({ name: "Javier" }),
     apod: "",
     rovers: Immutable.List(["Curiosity", "Opportunity", "Spirit"])
-    //rovers: ["Curiosity", "Opportunity", "Spirit"]
   };
   mainDiv.innerHTML = renderOptions(store.rovers);
 };
@@ -27,16 +26,17 @@ const renderOptions = rovers => {
 };
 
 const App = data => {
-  console.log(data);
-
-  return `<header></header>
+  if (data) {
+    return `<header>
+    <div class="head">Rovers Project<div>
+    </header>
     <main>
       <section>
           <div>
           ${displayRoverData(data.photos[0])}
           </div>
           <button class ="back" onclick="chooseAgain()">
-          Go back
+          Choose Again
         </button>
           <div class = "photocontainer">${displayRoverPictures(data.photos)} 
           
@@ -46,13 +46,20 @@ const App = data => {
   </main>
   <footer></footer>
 `;
+  } else {
+    return `<header></header>
+    <main></main>
+    <button class ="back" onclick="chooseAgain()">
+    <h1>Sorry, something went wrong</h1>
+    <footer></footer>
+    `;
+  }
 };
 
 const createUI = async rover => {
   mainDiv.style.display = "none";
   root.style.display = "block";
   const data = await roverData(rover);
-  //const data = "foo";
   root.innerHTML = App(data);
 };
 
