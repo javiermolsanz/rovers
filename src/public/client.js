@@ -27,6 +27,7 @@ const renderOptions = rovers => {
 };
 
 const App = data => {
+  console.log(data);
   if (data) {
     return `<header>
     <div class="head">Rovers Project<div>
@@ -34,12 +35,14 @@ const App = data => {
     <main>
       <section>
           <div class="infocontainer">
-          ${displayRoverData(data.photos[0])}
+          ${displayRoverData(data.latest_photos[0])}
           </div>
           <button class ="back" onclick="chooseAgain()">
           Choose Again
         </button>
-          <div class = "photocontainer">${displayRoverPictures(data.photos)} 
+          <div class = "photocontainer">${displayRoverPictures(
+            data.latest_photos
+          )} 
           
           </div>
           
@@ -78,6 +81,7 @@ const displayRoverData = roverData => {
   <h1>Name: ${roverData.rover.name}</h1>
   <h1>Launch Date: ${roverData.rover["launch_date"]}</h1>
   <h1>Landing Date: ${roverData.rover["landing_date"]}</h1>
+  <h1>Photo Date: ${roverData["earth_date"]}</h1>
   <h1>Status: ${roverData.rover.status}</h1>
   `;
 };

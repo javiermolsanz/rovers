@@ -19,7 +19,7 @@ app.post("/roverData", async (req, res) => {
   console.log(rover);
   try {
     const data = await fetch(
-      `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=1000&page=1&api_key=${process.env.API_KEY}`
+      `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/latest_photos?api_key=${process.env.API_KEY}`
     );
     const jsonData = await data.json();
     //console.log(jsonData);
