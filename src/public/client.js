@@ -19,11 +19,20 @@ window.onload = () => {
 const renderOptions = rovers => {
   let menu = "";
   rovers.map(rover => {
-    menu += `<button class="card" onclick="createUI('${rover}')">
+    menu += `<button class="card" onclick="createUI('${rover}', App)">
     ${rover}
   </button>`;
   });
   return menu;
+};
+
+//Higher order function
+const createUI = async (rover, callback) => {
+  initialmessage.style.display = "none";
+  mainDiv.style.display = "none";
+  root.style.display = "block";
+  const data = await roverData(rover);
+  root.innerHTML = callback(data);
 };
 
 const App = data => {
@@ -54,18 +63,10 @@ const App = data => {
     return `<header></header>
     <main></main>
     <button class ="back" onclick="chooseAgain()">
-    <h1>Sorry, something went wrong</h1>
+    <h1>Sorry, something went wrong. Try again later</h1>
     <footer></footer>
     `;
   }
-};
-
-const createUI = async rover => {
-  initialmessage.style.display = "none";
-  mainDiv.style.display = "none";
-  root.style.display = "block";
-  const data = await roverData(rover);
-  root.innerHTML = App(data);
 };
 
 const chooseAgain = () => {
