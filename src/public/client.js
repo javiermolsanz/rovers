@@ -31,12 +31,11 @@ const createUI = async (rover, callback) => {
   initialmessage.style.display = "none";
   mainDiv.style.display = "none";
   root.style.display = "block";
-  const data = await roverData(rover);
+  const data = await roverData(rover, handleError);
   root.innerHTML = callback(data);
 };
 
 const App = data => {
-  console.log(data);
   if (data) {
     return `<header>
     <div class="head">Rovers Project<div>
@@ -73,6 +72,7 @@ const chooseAgain = () => {
   mainDiv.style.display = "flex";
   root.innerHTML = ``;
   root.style.display = "none";
+  initialmessage.style.display = "block";
 };
 
 //roverData("Curiosity").then(d => displayRover(d.photos));
@@ -102,16 +102,24 @@ const displayRoverPictures = roverData => {
 
 // ------------------------------------------------------  API CALLS
 
-// API call to server to get data from rovers
-const roverData = async rover => {
+// API call to server to get data from rovers, this is also a higher order function
+const roverData = async (rover, errorHandler) => {
   const url = "/roverData";
   const data = { rover: rover };
-  const response = await fetch(url, {
-    headers: {
-      "Content-Type": "application/json"
-    },
-    method: "post",
-    body: JSON.stringify(data)
-  });
-  return response.json();
+  try {
+    const response = await fetch(url, {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "post",
+      body: JSON.stringify(data)
+    });
+    return response.json();
+  } catch (e) {
+    errorHandler(e);
+  }
+};
+
+const handleError = e => {
+  alert(`There was a problem fetching the data: ${e}`);
 };
