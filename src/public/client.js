@@ -2,11 +2,7 @@ const mainDiv = document.getElementById("main");
 const root = document.getElementById("root");
 const initialmessage = document.getElementById("initialmessage");
 
-// const updateStore = (store, newState) => {
-//   store = Object.assign(store, newState);
-//   render(root, store);
-// };
-
+//once the page loads, render the rover options
 window.onload = () => {
   let store = {
     user: Immutable.Map({ name: "Javier" }),
@@ -15,6 +11,8 @@ window.onload = () => {
   };
   mainDiv.innerHTML = renderOptions(store.rovers);
 };
+
+//render rovers menu
 
 const renderOptions = rovers => {
   let menu = "";
@@ -26,7 +24,7 @@ const renderOptions = rovers => {
   return menu;
 };
 
-//Higher order function
+//Higher order function to hide some elements and call the API
 const createUI = async (rover, callback) => {
   initialmessage.style.display = "none";
   mainDiv.style.display = "none";
@@ -34,6 +32,8 @@ const createUI = async (rover, callback) => {
   const data = await roverData(rover, handleError);
   root.innerHTML = callback(data);
 };
+
+//Component that renders the main view with pictures and info about the rovers
 
 const App = data => {
   if (data) {
@@ -68,6 +68,7 @@ const App = data => {
   }
 };
 
+//function that allows the user to go back to the menu
 const chooseAgain = () => {
   mainDiv.style.display = "flex";
   root.innerHTML = ``;
@@ -75,7 +76,7 @@ const chooseAgain = () => {
   initialmessage.style.display = "block";
 };
 
-//roverData("Curiosity").then(d => displayRover(d.photos));
+//functinoo that builds the rover information
 
 const displayRoverData = roverData => {
   return `
@@ -87,6 +88,7 @@ const displayRoverData = roverData => {
   `;
 };
 
+//function that creates an image for every photo
 const displayRoverPictures = roverData => {
   let images = ``;
   roverData.map(rover => {
@@ -94,11 +96,12 @@ const displayRoverPictures = roverData => {
   });
   return images;
 };
-// ------------------------------------------------------  COMPONENTS
 
-// Pure function that renders conditional information -- THIS IS JUST AN EXAMPLE, you can delete it.
+//error handler
 
-// Example of a pure function that renders infomation requested from the backend
+const handleError = e => {
+  alert(`There was a problem fetching the data: ${e}`);
+};
 
 // ------------------------------------------------------  API CALLS
 
@@ -118,8 +121,4 @@ const roverData = async (rover, errorHandler) => {
   } catch (e) {
     errorHandler(e);
   }
-};
-
-const handleError = e => {
-  alert(`There was a problem fetching the data: ${e}`);
 };
